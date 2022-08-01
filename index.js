@@ -49,7 +49,7 @@ app.post('/a', (request, response, next) => {
   .then((result) => {
     console.log(result);
     console.log(result.secure_url)
-    response.status(202);
+    response.status(200);
     response.send(JSON.stringify(result));
 
   })
