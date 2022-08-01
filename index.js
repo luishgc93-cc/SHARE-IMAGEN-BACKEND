@@ -1,13 +1,17 @@
 const express = require('express');
+const bodyParser = require('body-parser')
+const cors  = require('cors');
+const fileUpload = require('express-fileupload')
 const app = express();
-const cors = require("cors")
-var fs = require('fs');
-require("dotenv").config();
+require('dotenv').config(); 
 const cloudinary = require('cloudinary').v2
 
-app.use(express.json())
-
-app.use(cors())
+// Other Settings
+app.use(cors());
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))
+app.use(fileUpload())
+app.use(express.static('files'))
 
 const whitelist = ['http://localhost:3000/', '*']
 const corsOptions = {
@@ -29,14 +33,17 @@ app.listen(PORT, () => {
   console.log(`server corriendo en puerto : ${PORT}`)
 })
 
-app.get('/', (request, response) => {
-  response.send('<h2>hola esto es inicio de backend share</h2>')
-})
 
-app.get('/a', (request, response) => {
-  console.log('recibiendo imagen...')
+app.post('/a', (request, response, next) => {
+  console.log('recibiendo imagen...');
+  const newPath = __dirname + '/public/files/';
+  const file = request.files.file;
+  const filename = file.name;
+  const ficheroFinal = (`${newPath}${filename}`);
+  file.mv(`${newPath}${filename}`);
+
   cloudinary.uploader
-  .upload("b.jpg", {
+  .upload(ficheroFinal, {
     resource_type: "image",
   })
   .then((result) => {
