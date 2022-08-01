@@ -33,17 +33,22 @@ app.get('/', (request, response) => {
   response.send('<h2>hola esto es inicio de backend share</h2>')
 })
 
-app.get('/subirImagen', (request, response) => {
-  console.log('x')
+app.get('/a', (request, response) => {
+  console.log('recibiendo imagen...')
   cloudinary.uploader
-  .upload("a.jpg", 
-  {resource_type: "image",}, 
-  (error, result)=>{
-    console.log(result, error);
-    response.send('correcto')
+  .upload("b.jpg", {
+    resource_type: "image",
+  })
+  .then((result) => {
+    console.log(result);
+    console.log(result.secure_url)
+    response.status(202);
+    response.send(JSON.stringify(result));
 
   })
+  .catch((error) => {
+    console.log(error);
+    response.status(404).send('error');
+  });
 
 })
-
-
