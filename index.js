@@ -34,6 +34,9 @@ app.listen(PORT, () => {
   console.log(`server corriendo en puerto : ${PORT}`)
 })
 
+app.get('/', (request, response) => {
+  response.send('<h2>home</h2>')
+})
 
 app.post('/a', (request, response, next) => {
   console.log('recibiendo imagen...');
