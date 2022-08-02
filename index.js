@@ -28,7 +28,7 @@ app.get('/', (request, response) => {
   response.send('<h2>home</h2>')
 })
 
-app.post('/a', cors(corsOptions), (request, response, next) => {
+app.post('/a', (request, response, next) => {
   console.log('recibiendo imagen...');
   const newPath = __dirname + '/public/files/';
   const file = request.files.file;
