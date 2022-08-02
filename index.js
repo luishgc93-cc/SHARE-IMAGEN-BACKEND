@@ -15,7 +15,8 @@ app.use(express.static('files'))
 
 var corsOptions = {
   origin: 'http://localhost:3000',
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  optionsSuccessStatus: 200,
+  methods: "GET, PUT"
 }
 const PORT = 3001
 app.listen(PORT, () => {
@@ -26,7 +27,7 @@ app.get('/', (request, response) => {
   response.send('<h2>home</h2>')
 })
 
-app.post('/a', cors(corsOptions), (request, response, next) => {
+app.get('/a', cors(corsOptions), (request, response, next) => {
   console.log('recibiendo imagen...');
   const newPath = __dirname + '/public/files/';
   const file = request.files.file;
