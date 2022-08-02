@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(fileUpload())
 app.use(express.static('files'))
 
-const whitelist = ['*']
+const whitelist = ['http://localhost:3000']
 const corsOptions = {
   origin: (origin, callback) => {
     if (whitelist.indexOf(origin) !== -1) {
