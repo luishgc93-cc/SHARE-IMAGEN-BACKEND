@@ -13,20 +13,18 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(fileUpload())
 app.use(express.static('files'))
 
-const whitelist = ['http://localhost:3000']
+const whitelist = ["http://localhost:3000"]
 const corsOptions = {
-  origin: (origin, callback) => {
-    if (whitelist.indexOf(origin) !== -1) {
+  origin: function (origin, callback) {
+    if (!origin || whitelist.indexOf(origin) !== -1) {
       callback(null, true)
     } else {
-      callback(new Error())
+      callback(new Error("Not allowed by CORS"))
     }
-  }
+  },
+  credentials: true,
 }
-
-app.use(cors({
-  methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
-}));
+app.use(cors(corsOptions))
 
 const PORT = 3001
 app.listen(PORT, () => {
