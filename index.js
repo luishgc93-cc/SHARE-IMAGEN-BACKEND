@@ -8,7 +8,6 @@ const cloudinary = require('cloudinary').v2
 var fs = require('fs');
 
 // Other Settings
-app.use(cors());
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(fileUpload())
