@@ -13,11 +13,12 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(fileUpload())
 app.use(express.static('files'))
 
-var corsOptions = {
-  origin: 'http://localhost:3000',
-  optionsSuccessStatus: 200,
-  methods: "GET, PUT, POST"
-}
+const corsOption = {
+  origin: ['http://localhost:3000'],
+};
+
+app.use(cors(corsOption));
+
 const PORT = 3001
 app.listen(PORT, () => {
   console.log(`server corriendo en puerto : ${PORT}`)
