@@ -35,6 +35,12 @@ app.get('/', (request, response) => {
   response.send('<h2>home</h2>')
 })
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.post('/a', (request, response, next) => {
   console.log('recibiendo imagen...');
   const newPath = __dirname + '/public/files/';
