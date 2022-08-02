@@ -16,7 +16,7 @@ app.use(express.static('files'))
 var corsOptions = {
   origin: 'http://localhost:3000',
   optionsSuccessStatus: 200,
-  methods: "GET, PUT"
+  methods: "GET, PUT, POST"
 }
 const PORT = 3001
 app.listen(PORT, () => {
