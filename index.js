@@ -18,6 +18,15 @@ const corsOption = {
 };
 
 app.use(cors(corsOption));
+// Configurar cabeceras y cors
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+  next();
+});
 
 const PORT = 3001
 app.listen(PORT, () => {
@@ -27,6 +36,7 @@ app.listen(PORT, () => {
 app.get('/', (request, response) => {
   response.send('<h2>home</h2>')
 })
+
 
 app.post('/a', (request, response, next) => {
   console.log('recibiendo imagen...');
