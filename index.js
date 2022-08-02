@@ -13,8 +13,10 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(fileUpload())
 app.use(express.static('files'))
 
-app.use(cors())
-
+var corsOptions = {
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 const PORT = 3001
 app.listen(PORT, () => {
   console.log(`server corriendo en puerto : ${PORT}`)
@@ -24,13 +26,7 @@ app.get('/', (request, response) => {
   response.send('<h2>home</h2>')
 })
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
-
-app.post('/a', (request, response, next) => {
+app.post('/a', cors(corsOptions), (request, response, next) => {
   console.log('recibiendo imagen...');
   const newPath = __dirname + '/public/files/';
   const file = request.files.file;
