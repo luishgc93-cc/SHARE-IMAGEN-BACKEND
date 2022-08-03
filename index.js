@@ -17,7 +17,7 @@ app.use(cors({
   origin: "*",
 }));
 
-const PORT = 443
+const PORT = 30001
 app.listen(PORT, () => {
   console.log(`server corriendo en puerto : ${PORT}`)
 })
