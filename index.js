@@ -17,7 +17,7 @@ app.use(cors({
   origin: "*",
 }));
 
-const PORT = 3001
+const PORT = 80
 app.listen(PORT, () => {
   console.log(`server corriendo en puerto : ${PORT}`)
 })
