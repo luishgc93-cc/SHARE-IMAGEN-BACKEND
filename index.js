@@ -8,11 +8,11 @@ const cloudinary = require('cloudinary').v2
 var fs = require('fs');
 
 // Other Settings
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: true}))
+/*app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))*/
 app.use(fileUpload())
 app.use(express.static('files'))
-app.use(cors())
+app.use(cors());
 
 const PORT = 3001
 app.listen(PORT, () => {
