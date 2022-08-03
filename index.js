@@ -12,9 +12,6 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(fileUpload())
 app.use(express.static('files'))
-
-var cors = require('cors')
-
 app.use(cors())
 
 const PORT = 3001
