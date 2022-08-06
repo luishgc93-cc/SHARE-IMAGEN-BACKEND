@@ -56,6 +56,24 @@ app.post('/a', (request, response, next) => {
 
 })
 
+app.post('/bye', (request, response, next) => {
+  console.log('bye photo...');
+  cloudinary.uploader
+  .destroy('ucyqkbtbkt76mnog4wsu',  {
+  })
+  .then((result) => {
+    console.log(result);
+    response.status(200);
+    response.send(JSON.stringify(result));
+
+  })
+  .catch((error) => {
+    console.log(error);
+    response.status(404).send('error');
+  })
+
+})
+
 function BorrarFotoTemporalmente (foto){
   try {
     fs.unlinkSync(foto);
