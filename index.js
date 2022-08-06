@@ -58,8 +58,10 @@ app.post('/a', (request, response, next) => {
 
 app.post('/bye', (request, response, next) => {
   console.log('bye photo...');
+  var photo = request.body.photo || '';
+
   cloudinary.uploader
-  .destroy('ucyqkbtbkt76mnog4wsu',  {
+  .destroy(photo,  {
   })
   .then((result) => {
     console.log(result);
