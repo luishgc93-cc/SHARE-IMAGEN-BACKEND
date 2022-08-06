@@ -66,7 +66,7 @@ app.post('/bye', (request, response, next) => {
   .then((result) => {
     console.log(result);
     response.status(200);
-    response.send(JSON.stringify(result));
+    response.send(JSON.stringify(result.data));
 
   })
   .catch((error) => {
