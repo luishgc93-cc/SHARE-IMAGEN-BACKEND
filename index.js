@@ -62,6 +62,7 @@ app.post('/bye', (request, response, next) => {
 
   cloudinary.uploader
   .destroy(photo,  {
+    invalidate: true,
   })
   .then((result) => {
     console.log(result);
